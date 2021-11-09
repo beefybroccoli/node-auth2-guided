@@ -13,6 +13,7 @@ module.exports = (req, res, next) => {
   jwt.verify(token, TOKEN_SECRET, (err, decoded) => {
     if (err) {
       return next({
+        status: 401,m
         message: `bad tokenz: ${err.message}`
       })
     }
