@@ -5,5 +5,9 @@ module.exports = (req, res, next) => {
   // pull token from a header Authorization
   // check the token for validity
   // (recreate the signature)
-  const token = req.header.authorization
+  const token = req.headers.authorization
+
+  if (!token) {
+    return next({ status: 401, message: 'we wants token!'})
+  }
 };
