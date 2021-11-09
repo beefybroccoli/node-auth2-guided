@@ -18,7 +18,8 @@ module.exports = (req, res, next) => {
         message: `bad tokenz: ${err.message}`
       })
     }
-
-    
+    req.decodedJwt = decoded
+    console.log(decoded)
+    next()
   })
 };
