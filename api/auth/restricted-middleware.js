@@ -1,4 +1,4 @@
 module.exports = (req, res, next) => {
-  // add code here to verify users are logged in
+  // pull token from a header Authorization
   next();
 };
