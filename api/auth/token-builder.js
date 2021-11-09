@@ -6,4 +6,8 @@ module.exports = function buildToken(user) {
     username: user.username,
     role: user.role,
   }
+  const options = {
+    expiresIn: '1d',
+  }
+  return jwt.sign()
 }
