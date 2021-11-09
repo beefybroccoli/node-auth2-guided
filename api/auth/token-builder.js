@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const {} = require('../')
 
 module.exports = function buildToken(user) {
   const payload = {
