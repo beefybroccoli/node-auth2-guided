@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const {} = require('../')
+const { TOKEN_SECRET } = require('../../config')
 
 module.exports = function buildToken(user) {
   const payload = {
@@ -10,5 +10,5 @@ module.exports = function buildToken(user) {
   const options = {
     expiresIn: '1d',
   }
-  return jwt.sign(payload, 'shh', options)
+  return jwt.sign(payload, TOKEN_SECRET, options)
 }
