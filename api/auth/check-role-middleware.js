@@ -3,8 +3,10 @@ module.exports = function (role) {
     if (req.decodedJwt !== role) {
       next({
         status: 403,
-        
+        message: 'you have no power here!'
       })
+    } else {
+      next()
     }
   }
 }
