@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const {secret_string} = require('../../config/index')
+const {TOKEN_SECRET} = require('../../config/index')
 
 function buildToken(user){
     // return `faketoken for user ${user.username}`;
@@ -13,7 +13,7 @@ function buildToken(user){
         expiresIn: '1d',
     }
 
-    return jwt.sign(payload, secret_string, options)
+    return jwt.sign(payload, TOKEN_SECRET, options)
 }
 
 module.exports = {buildToken};
