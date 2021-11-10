@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const router = require('express').Router();
 
 const Users = require('../users/users-model.js');
+const tokenBuilder = require('./token-builder');
 
 router.post('/register', (req, res, next) => {
   let user = req.body;
@@ -27,8 +28,12 @@ router.post('/login', (req, res, next) => {
   Users.findBy({ username }) // it would be nice to have middleware do this
     .then(([user]) => {
       if (user && bcrypt.compareSync(password, user.password)) {
+        
+        //where we create token and append it to the response
+        const token = tokenBuilder.buildToken(user );
+
         res.status(200).json({
-          message: `Welcome back ${user.username}!`,
+          message: `Welcome back ${user.username}!`, token
         });
       } else {
         next({ status: 401, message: 'Invalid Credentials' });
