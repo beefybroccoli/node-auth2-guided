@@ -9,11 +9,11 @@ router.post('/register', (req, res, next) => {
   let user = req.body;
 
   // bcrypting the password before saving
-  const rounds = process.env.BCRYPT_ROUNDS || 8; // 2 ^ 8
-  const hash = bcrypt.hashSync(user.password, rounds);
+  // const rounds = process.env.BCRYPT_ROUNDS || 8; // 2 ^ 8
+  const hash = bcrypt.hashSync(user.password, 8);
 
   // never save the plain text password in the db
-  user.password = hash
+  user.password = hash;
 
   Users.add(user)
     .then(saved => {
@@ -32,8 +32,10 @@ router.post('/login', (req, res, next) => {
         //where we create token and append it to the response
         const token = tokenBuilder.buildToken(user );
 
+        console.log("user = ", user);
+
         res.status(200).json({
-          message: `Welcome back ${user.username}!`, token
+          message: `Welcome back ${user.username}, role = ${user.role} !`, token
         });
       } else {
         next({ status: 401, message: 'Invalid Credentials' });
