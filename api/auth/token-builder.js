@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const {secret_string} = require('../../config')
+const {secret_string} = require('../../config/index')
 
 function buildToken(user){
     // return `faketoken for user ${user.username}`;
